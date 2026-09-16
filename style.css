@@ -35,6 +35,15 @@ nav {
     font-weight: bold;
     font-size: 1.2rem;
     color: #d84370;
+    background: transparent; 
+}
+
+.logo img {
+    height: 70px; /* Passe die Höhe nach deinen Wünschen an (z. B. 35px - 50px) */
+    width: auto;  /* Hält das Seitenverhältnis des Bildes bei */
+    display: block;
+    background: transparent; 
+    background-color: transparent; 
 }
 
 .nav-links {
@@ -56,13 +65,19 @@ nav {
 
 /* --- 3. Hero-Bereich (Startseite) --- */
 .hero {
-    height: 100vh;
+    height: 150vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, #FC00A1 0%, #963C75 100%);
+   
+   background: linear-gradient(135deg, rgba(252, 0, 161, 0.7) 0%, rgba(150, 60, 117, 0.7) 100%), url('images/bild.png');
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
     color: white;
     padding: 0 20px;
 }
@@ -127,19 +142,13 @@ nav {
 }
 
 .about-right-img {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 12%; /* Auf Wunsch rund, kannst du zu 12px ändern für Ecken */
     flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-    .about-flex-container {
-        flex-direction: column-reverse;
-        text-align: center;
-    }
-}
 
 /* --- 6. Projekt-Karten --- */
 .project-grid {
@@ -180,28 +189,51 @@ nav {
     overflow-x: auto;
     margin-bottom: 15px;
     border-radius: 6px;
+    position: relative; 
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    
+    -webkit-mask-image: linear-gradient(to left, transparent, black 10%, black 90%, transparent); 
+    mask-image: linear-gradient(to left, transparent, black 10%, black 90%, transparent); 
 }
 
+/* Korrektur: 'scrolbar' zu 'scrollbar' korrigiert */
 .gallery-container::-webkit-scrollbar {
-    display: none;
+    display: none; 
 }
 
 .gallery-track {
     display: flex;
     gap: 10px;
+    width: max-content; 
+    /* Nutzt jetzt den Namen scrollGalleryLeft */
+    animation: scrollGalleryLeft 30s linear infinite; 
+}
+
+.gallery-container:hover .gallery-track {
+    animation-play-state: paused;
 }
 
 .gallery-img {
-    width: 100%;
+    /* Korrektur: 260% geändert zu 260px */
+    width: 260px;
     min-width: 260px;
     height: 180px;
     object-fit: cover;
     border-radius: 6px;
-    scroll-snap-align: start;
+    scroll-snap-align: start; 
 }
 
+/* Korrektur: Name auf scrollGalleryLeft angepasst */
+@keyframes scrollGalleryLeft {
+    0% {
+        transform: translateX(0); 
+    }
+    100% {
+        transform: translateX(-50%); 
+    }
+}
 /* --- 8. Buttons & Icons (Social, Zeitung, PDF) --- */
 .Zlink-btn, .social-btn {
     display: inline-flex;
@@ -302,7 +334,11 @@ body.dark-mode .logo {
 }
 
 body.dark-mode .hero {
-    background: linear-gradient(135deg, #47297b 20%, #722e9a 80%);
+    background: linear-gradient(135deg,rgba(71, 41, 123, 0.8) 20%, rgba(114, 46, 154, 0.8) 100%), url('images/bild.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    color: #dec0f1; 
 }
 
 body.dark-mode .section h2 {
@@ -334,4 +370,8 @@ body.dark-mode .social-btn {
 body.dark-mode .Zlink-btn:hover,
 body.dark-mode .social-btn:hover {
     background-color: #5c1979;
+}
+
+html {
+    scroll-behavior: smooth;
 }
