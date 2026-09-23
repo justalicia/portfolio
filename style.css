@@ -5,10 +5,6 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -43,10 +39,11 @@ nav {
 }
 
 .logo img {
-    height: 70px;
-    width: auto;  
+    height: 70px; /* Passe die Höhe nach deinen Wünschen an (z. B. 35px - 50px) */
+    width: auto;  /* Hält das Seitenverhältnis des Bildes bei */
     display: block;
     background: transparent; 
+    background-color: transparent; 
 }
 
 .nav-links {
@@ -66,18 +63,21 @@ nav {
     color: #d84370;
 }
 
-/* --- 3. Hero-Bereich --- */
+/* --- 3. Hero-Bereich (Startseite) --- */
 .hero {
-    height: 100vh;
+    height: 150vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, rgba(252, 0, 161, 0.7) 0%, rgba(150, 60, 117, 0.7) 100%), url('images/bild.png');
+   
+   background: linear-gradient(135deg, rgba(252, 0, 161, 0.7) 0%, rgba(150, 60, 117, 0.7) 100%), url('images/bild.png');
+    
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    
     color: white;
     padding: 0 20px;
 }
@@ -129,7 +129,7 @@ nav {
     padding-bottom: 5px;
 }
 
-/* --- 5. Über mich --- */
+/* --- 5. Über mich (Text links, Bild rechts) --- */
 .about-flex-container {
     display: flex;
     align-items: center;
@@ -145,9 +145,10 @@ nav {
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border-radius: 12%;
+    border-radius: 12%; /* Auf Wunsch rund, kannst du zu 12px ändern für Ecken */
     flex-shrink: 0;
 }
+
 
 /* --- 6. Projekt-Karten --- */
 .project-grid {
@@ -182,7 +183,7 @@ nav {
     margin-bottom: 15px;
 }
 
-/* --- 7. Galerie --- */
+/* --- 7. Galerie (Swipen) --- */
 .gallery-container {
     width: 100%;
     overflow-x: auto;
@@ -192,10 +193,12 @@ nav {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    
     -webkit-mask-image: linear-gradient(to left, transparent, black 10%, black 90%, transparent); 
     mask-image: linear-gradient(to left, transparent, black 10%, black 90%, transparent); 
 }
 
+/* Korrektur: 'scrolbar' zu 'scrollbar' korrigiert */
 .gallery-container::-webkit-scrollbar {
     display: none; 
 }
@@ -204,6 +207,7 @@ nav {
     display: flex;
     gap: 10px;
     width: max-content; 
+    /* Nutzt jetzt den Namen scrollGalleryLeft */
     animation: scrollGalleryLeft 30s linear infinite; 
 }
 
@@ -212,6 +216,7 @@ nav {
 }
 
 .gallery-img {
+    /* Korrektur: 260% geändert zu 260px */
     width: 260px;
     min-width: 260px;
     height: 180px;
@@ -220,6 +225,7 @@ nav {
     scroll-snap-align: start; 
 }
 
+/* Korrektur: Name auf scrollGalleryLeft angepasst */
 @keyframes scrollGalleryLeft {
     0% {
         transform: translateX(0); 
@@ -228,8 +234,7 @@ nav {
         transform: translateX(-50%); 
     }
 }
-
-/* --- 8. Buttons & Icons --- */
+/* --- 8. Buttons & Icons (Social, Zeitung, PDF) --- */
 .Zlink-btn, .social-btn {
     display: inline-flex;
     align-items: center;
@@ -291,7 +296,7 @@ footer {
     margin-top: 50px;
 }
 
-/* --- 11. Dark Mode --- */
+/* --- 11. Dark Mode Styling --- */
 .theme-btn {
     background: none;
     border: none;
@@ -365,4 +370,8 @@ body.dark-mode .social-btn {
 body.dark-mode .Zlink-btn:hover,
 body.dark-mode .social-btn:hover {
     background-color: #5c1979;
+}
+
+html {
+    scroll-behavior: smooth;
 }
